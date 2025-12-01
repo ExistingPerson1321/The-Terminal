@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- saved from url=(0039)https://existingperson1321.github.io/The-Terminal/ -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Terminal</title>
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="https://existingperson1321.github.io/The-Terminal/images/hackibot.png">
-  <link href="./index/css2" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/hackibot.png">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   <style>
     /* Header styling */
     header {
@@ -96,10 +96,10 @@
 
 
   <p>Click below to download the latest release:<br>
-    <strong id="version">1.5.34</strong> 
-    <span id="date">(13 Nov 2025)</span>
+    <strong id="version">v{version}</strong> 
+    <span id="date">({date updated})</span>
   </p>
-  <a class="download-btn" href="https://github.com/existingperson1321/the-terminal/releases/latest">
+  <a class="download-btn" href="https://github.com/ExistingPerson1321/The-Terminal/releases/download/1.5.35/The.Terminal.exe">
     Download The Terminal Here!
   </a>
 
@@ -107,29 +107,30 @@
   <!-- Continuous Sliding Carousel -->
   <div class="carousel">
     <div class="carousel-track">
-      <img src="./index/eg1.png" alt="Screenshot 1">
-      <img src="./index/eg2.png" alt="Screenshot 2">
-      <img src="./index/eg3.png" alt="Screenshot 3">
+      <img src="images/eg1.png" alt="Screenshot 1">
+      <img src="images/eg2.png" alt="Screenshot 2">
+      <img src="images/eg3.png" alt="Screenshot 3">
       <!-- Duplicate images for seamless loop -->
-      <img src="./index/eg1.png" alt="Screenshot 1">
-      <img src="./index/eg2.png" alt="Screenshot 2">
-      <img src="./index/eg3.png" alt="Screenshot 3">
+      <img src="images/eg1.png" alt="Screenshot 1">
+      <img src="images/eg2.png" alt="Screenshot 2">
+      <img src="images/eg3.png" alt="Screenshot 3">
     </div>
   </div>
 
   <!-- Shimeji mascot -->
-  <img id="shimeji" src="./index/hackibot.gif" alt="Shimeji mascot" style="left: 830px; transform: scaleX(1);">
+  <img id="shimeji" src="images/hackibot.gif" alt="Shimeji mascot">
 
   <!-- More info -->
   <h3>What is The Terminal?</h3>
   <p>The Terminal is a small project by 
     <a href="https://github.com/existingperson1321" target="_blank">ExistingPerson1321</a>
-    and is mainly in batch.
+    and is mainly in batch. The github page is  
+    <a href="https://github.com/existingperson1321/the-terminal" target="_blank">here</a>
   </p>
 
   <footer>
-    <p>© 2025 Hackitech Industries | Made by 
-      <a href="https://github.com/existingperson1321" target="_blank">HackiTech</a> 
+    <p>&copy; 2025 Hackitech | Made by 
+      <a href="https://github.com/existingperson1321" target="_blank">ExistingPerson1321</a> 
       and 
       <a href="https://github.com/tasqlab" target="_blank">tasqlab</a>
     </p>
@@ -157,7 +158,7 @@
     }
 
     setInterval(moveShimeji, 30); // update every 30ms
-      // 🔧 Fetch latest release version + date from GitHub
+      // Fetch latest release version + date from GitHub
     async function loadVersion() {
       try {
         const response = await fetch("https://api.github.com/repos/existingperson1321/the-terminal/releases/latest");
@@ -178,6 +179,5 @@
     }
     loadVersion();
   </script>
-
-
-</body></html>
+</body>
+</html>
