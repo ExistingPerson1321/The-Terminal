@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)https://existingperson1321.github.io/The-Terminal/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Terminal</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://existingperson1321.github.io/The-Terminal/images/hackibot.png">
+  <link href="./index/css2" rel="stylesheet">
+  <style>
+    /* Header styling */
+    header {
+      background: #4CAF50; /* green background */
+      padding: 20px;
+      color: #fff; /* white text */
+    }
+    header h1 {
+      margin: 0;
+      color: #fff; /* ensure heading text is white */
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #111;
+      color: #eee;
+      text-align: center;
+      padding-top: 20px;
+      margin: 0;
+    }
+
+    a.download-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #00ff99;
+      color: #111;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    a.download-btn:hover {
+      background-color: #00cc77;
+    }
+
+    /* Continuous Carousel styling */
+    .carousel {
+      overflow: hidden;
+      position: relative;
+      max-width: 800px;
+      margin: 40px auto;
+      border-radius: 8px;
+    }
+    .carousel-track {
+      display: flex;
+      animation: scroll 30s linear infinite;
+    }
+    .carousel img {
+      width: 800px; /* adjust to your actual image width */
+      flex-shrink: 0;
+      border-radius: 8px;
+    }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-2400px); } /* 3 images × 800px */
+    }
+
+    /* Shimeji mascot styling */
+    #shimeji {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      transition: left 0.03s linear, transform 0.2s linear;
+      pointer-events: none;
+    }
+
+    footer {
+      background: #333;
+      color: #aaa;
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+    footer a {
+      color: #4da6ff;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Green header with white text -->
+  <header>
+    <h1>The Terminal</h1>
+  </header>
+
+
+  <p>Click below to download the latest release:<br>
+    <strong id="version">1.5.34</strong> 
+    <span id="date">(13 Nov 2025)</span>
+  </p>
+  <a class="download-btn" href="https://github.com/existingperson1321/the-terminal/releases/latest">
+    Download The Terminal Here!
+  </a>
+
+
+  <!-- Continuous Sliding Carousel -->
+  <div class="carousel">
+    <div class="carousel-track">
+      <img src="./index/eg1.png" alt="Screenshot 1">
+      <img src="./index/eg2.png" alt="Screenshot 2">
+      <img src="./index/eg3.png" alt="Screenshot 3">
+      <!-- Duplicate images for seamless loop -->
+      <img src="./index/eg1.png" alt="Screenshot 1">
+      <img src="./index/eg2.png" alt="Screenshot 2">
+      <img src="./index/eg3.png" alt="Screenshot 3">
+    </div>
+  </div>
+
+  <!-- Shimeji mascot -->
+  <img id="shimeji" src="./index/hackibot.gif" alt="Shimeji mascot" style="left: 830px; transform: scaleX(1);">
+
+  <!-- More info -->
+  <h3>What is The Terminal?</h3>
+  <p>The Terminal is a small project by 
+    <a href="https://github.com/existingperson1321" target="_blank">ExistingPerson1321</a>
+    and is mainly in batch.
+  </p>
+
+  <footer>
+    <p>© 2025 Hackitech Industries | Made by 
+      <a href="https://github.com/existingperson1321" target="_blank">HackiTech</a> 
+      and 
+      <a href="https://github.com/existingperson1321" target="_blank">tasqlab</a>
+    </p>
+  </footer>
+  
+  <script>
+    // Shimeji walking logic with flipping
+    const shimeji = document.getElementById('shimeji');
+    let pos = 0;
+    let direction = 1;
+
+    function moveShimeji() {
+      pos += direction * 2; // speed in pixels
+      if (pos > window.innerWidth - 100 || pos < 0) {
+        direction *= -1; // reverse direction when hitting edge
+      }
+      shimeji.style.left = pos + 'px';
+
+      // Flip when moving right, normal when moving left
+      if (direction === 1) {
+        shimeji.style.transform = 'scaleX(-1)'; // face right
+      } else {
+        shimeji.style.transform = 'scaleX(1)'; // face left
+      }
+    }
+
+    setInterval(moveShimeji, 30); // update every 30ms
+      // 🔧 Fetch latest release version + date from GitHub
+    async function loadVersion() {
+      try {
+        const response = await fetch("https://api.github.com/repos/existingperson1321/the-terminal/releases/latest");
+        const data = await response.json();
+        const version = data.tag_name; // e.g. "v1.0.0"
+        const date = new Date(data.published_at).toLocaleDateString(undefined, {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        });
+        document.getElementById("version").textContent = version;
+        document.getElementById("date").textContent = `(${date})`;
+      } catch (error) {
+        console.error("Error fetching version:", error);
+        document.getElementById("version").textContent = "v?";
+        document.getElementById("date").textContent = "(unknown)";
+      }
+    }
+    loadVersion();
+  </script>
+
+
+</body></html>
