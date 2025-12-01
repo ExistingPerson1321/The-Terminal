@@ -1,0 +1,175 @@
+::[Bat To Exe Converter]
+::
+::YAwzoRdxOk+EWAjk
+::fBw5plQjdCyDJGyX8VAjFDNVTw+LCG65Doks4evv+viCsXENRu04NobY1dQ=
+::YAwzuBVtJxjWCl3EqQJgSA==
+::ZR4luwNxJguZRRnk
+::Yhs/ulQjdF+5
+::cxAkpRVqdFKZSDk=
+::cBs/ulQjdF+5
+::ZR41oxFsdFKZSDk=
+::eBoioBt6dFKZSDk=
+::cRo6pxp7LAbNWATEpCI=
+::egkzugNsPRvcWATEpCI=
+::dAsiuh18IRvcCxnZtBJQ
+::cRYluBh/LU+EWAnk
+::YxY4rhs+aU+JeA==
+::cxY6rQJ7JhzQF1fEqQJQ
+::ZQ05rAF9IBncCkqN+0xwdVs0
+::ZQ05rAF9IAHYFVzEqQJQ
+::eg0/rx1wNQPfEVWB+kM9LVsJDGQ=
+::fBEirQZwNQPfEVWB+kM9LVsJDGQ=
+::cRolqwZ3JBvQF1fEqQJQ
+::dhA7uBVwLU+EWDk=
+::YQ03rBFzNR3SWATElA==
+::dhAmsQZ3MwfNWATElA==
+::ZQ0/vhVqMQ3MEVWAtB9wSA==
+::Zg8zqx1/OA3MEVWAtB9wSA==
+::dhA7pRFwIByZRRnk
+::Zh4grVQjdCyDJGyX8VAjFDNVTw+LCG65Dok45+vu4u+Jtl4hYOo6OLveyLmHLuEfqnbhYYM96kpIl8weDRZLMBeza28=
+::YB416Ek+Zm8=
+::
+::
+::978f952a14a936cc963da21a135fa983
+@echo off
+chcp 65001 >nul
+title The Terminal: Programs
+cls
+:programs
+echo.
+echo [38;5;33m██████╗ ██████╗  ██████╗  ██████╗ ██████╗  █████╗ ███╗   ███╗███████╗[0m
+echo [38;5;33m██╔══██╗██╔══██╗██╔═══██╗██╔════╝ ██╔══██╗██╔══██╗████╗ ████║██╔════╝[0m
+echo [38;5;27m██████╔╝██████╔╝██║   ██║██║  ███╗██████╔╝███████║██╔████╔██║███████╗[0m
+echo [38;5;27m██╔═══╝ ██╔══██╗██║   ██║██║   ██║██╔══██╗██╔══██║██║╚██╔╝██║╚════██║[0m
+echo [38;5;17m██║     ██║  ██║╚██████╔╝╚██████╔╝██║  ██║██║  ██║██║ ╚═╝ ██║███████║[0m
+echo [38;5;17m╚═╝     ╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝[0m
+echo.
+echo ╔═════════════════════════════════════╗
+echo ╠═══════════╣Programs List╠═══════════╣
+echo ╠═════════════════════════════════════╣
+echo ╠╣1) Run HackiBot 2.1.3╠══════════════╣
+echo ║                                     ║
+echo ╠╣2) Run WINfo╠═══════════════════════╣
+echo ║                                     ║
+echo ╠╣3) Rick Roll╠═══════════════════════╣
+echo ║                                     ║
+echo ╠╣4) Check the Weather╠═══════════════╣
+echo ║                                     ║
+echo ╠╣5) Check the Dictionary╠════════════╣
+echo ║                                     ║
+echo ╠╣6) Ask Gemini╠══════════════════════╣
+echo ║                                     ║
+echo ╠╣7) Back╠════════════════════════════╣
+echo ║                                     ║
+echo ╠╣8) Exit╠════════════════════════════╣
+echo ║                                     ║
+echo ╠╣9) Check Patch Notes/Update Logs╠═══╣
+echo ╚═════════════════════════════════════╝
+echo.
+set /p choice=Enter your choice (1 to 9): 
+if "%choice%"=="1" (
+    echo Launching HackiBot...
+    cd "Java"
+    .\jre\bin\javaw.exe -jar HackiBot.jar
+    cd ..
+    cls    
+    goto programs
+)
+
+if "%choice%"=="2" (
+    echo Launching WINfo...
+    cd WINfo
+    .\WINfo.bat
+    cd ..
+    cls    
+    goto programs
+)
+
+if "%choice%"=="3" (
+    curl.exe -sN http://rick.jachan.dev
+    cls    
+    goto programs
+)
+
+if "%choice%"=="4" (
+    cls
+    .\weather.exe
+    pause
+    cls
+    goto programs
+)
+
+if "%choice%"=="5" (
+    cls
+    .\dictionary.exe
+    pause
+    cls
+    goto programs
+)
+
+if "%choice%"=="6" (
+    cls
+    .\gemini.exe
+    pause
+    cls
+    goto programs
+)
+
+if "%choice%"=="7" (
+    echo Returning to Main Menu...
+    cls    
+    .\Terminal.exe  
+)
+
+if "%choice%"=="8" (
+    echo See Ya!
+    timeout /t 1 >nul
+    taskkill /f /fi "WINDOWTITLE eq The Terminal*" >nul 2>&1
+    exit
+)
+
+if "%choice%"=="9" (
+    cls
+    echo.    
+    echo Patch Notes/Update Logs
+    echo.
+    echo 1.5.0 - 1.5.35
+    echo - Added Doom and MiniCraft
+    echo - Changed Java folder loading
+    echo - Added Menu colours
+    echo - Fixed Updates FOR REAL THIS TIME
+    echo - Fixed Bug with HackiBot not opening, again...
+    echo - Removed FNaF Terminal Edition for Portable Edition/Universal due to it having admin perms
+    echo - Added new Weather app to Programs Menu (Created by tasqlab tysm)
+    echo - Added Geometry Dash
+    echo - Partnered with tasqlab and added Gemini and Dictionary
+    echo - Added new Fishing RPG (Some might recognize it)
+    echo - Added Stack
+    echo.
+    echo 1.3.3 - 1.5.0
+    echo - Revamped entire Menu Selection with Sections
+    echo - Added FNaF to The Terminal in Games Section
+    echo.
+    echo 1.3 - 1.3.3
+    echo - Fixed Bug where Desktop Icon wouldn't display
+    echo - Fixed WINfo script not running
+    echo - Made Setup Executable less "boring" (added Welcome Page and custom images)
+    echo.
+    echo 1.2 - 1.3
+    echo - Added Games: Snake, PacMan, Tetris, Pong
+    echo - Added Rick Roll Option 
+    echo.
+    echo 1.0 - 1.1
+    echo - Added HackiBot
+    echo - Added WINfo
+    echo - Bundled JRE 1.8_461 for HackiBot dependency
+    echo - Shrunk amount of code needed for compile
+    echo.
+    pause
+    cls
+    goto programs
+)
+pause
+echo Invalid choice. Please try again.
+pause
+goto programs
