@@ -10,5 +10,5 @@ A launcher for all applications I've created or bundled and include many games a
   
   
   
-> The Fine Print: Some Applications are not made by HackiTech or Tasqlab.
+> The Fine Print: Some Applications are not made by HackiTech or tasqlab.
 WINDOWS ONLY (Windows 7 and older required an extended kernel INSTALLED AND ENABLED)
