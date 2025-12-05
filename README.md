@@ -1,4 +1,10 @@
-<h1 align="center"> The-Terminal </h1>
+<h1 align="center"> THEterminal╗ <br>
+╚══██╔══╝ <br>
+   ██║   <br>
+   ██║   <br>
+   ██║   <br>
+   ╚═╝   <br>
+  The-Terminal </h1>
 <p align="center">
   <a href="https://existingperson1321.github.io/The-Terminal">
     <img src="https://img.shields.io/badge/Website-teal" width="100">
