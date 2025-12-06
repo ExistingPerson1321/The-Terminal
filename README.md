@@ -1,4 +1,4 @@
-<h1 align="center"> THEterminal╗ <br>
+<h1 align="center">The Terminal╗ <br>
 ╚══██╔══╝ <br>
    ██║   <br>
    ██║   <br>
