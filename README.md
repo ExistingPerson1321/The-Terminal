@@ -1,115 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Terminal</title>
-  <!-- Place this tag in your head or just before your close body tag. -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="index/hackibot.png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-  <style>
-    /* Header styling */
-    header {
-      background: #4CAF50; /* green background */
-      padding: 20px;
-      color: #fff; /* white text */
-    }
-    header h1 {
-      margin: 0;
-      color: #fff; /* ensure heading text is white */
-    }
-    img.square {
-      border-radius: 0%;
-    }
-    img.circle {
-      border-radius: 100%;
-    }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #111;
-      color: #eee;
-      text-align: center;
-      padding-top: 20px;
-      margin: 0;
-    }
-
-    a.download-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 24px;
-      background-color: #00ff99;
-      color: #111;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 6px;
-      transition: background-color 0.3s ease;
-    }
-    a.download-btn:hover {
-      background-color: #00cc77;
-    }
-
-    /* Continuous Carousel styling */
-    .carousel {
-      overflow: hidden;
-      position: relative;
-      max-width: 800px;
-      margin: 40px auto;
-      border-radius: 8px;
-    }
-    .carousel-track {
-      display: flex;
-      animation: scroll 30s linear infinite;
-    }
-    .carousel img {
-      width: 800px; /* adjust to your actual image width */
-      flex-shrink: 0;
-      border-radius: 8px;
-    }
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-2400px); } /* 3 index × 800px */
-    }
-
-    /* Shimeji mascot styling */
-    #shimeji {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 80px;
-      transition: left 0.03s linear, transform 0.2s linear;
-      pointer-events: none;
-    }
-
-    footer {
-      background: #333;
-      color: #aaa;
-      padding: 15px;
-      margin-top: 40px;
-      font-size: 14px;
-    }
-    footer a {
-      color: #4da6ff;
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-  <!-- Green header with white text -->
-  <header>
-    <h1>The Terminal</h1>
-  </header>
-
-
-  <p>Click below to download the latest release:<br>
-    <strong id="version">v{version}</strong> 
-    <span id="date">({date updated})</span>
-  </p>
-  <a class="download-btn" href="https://github.com/ExistingPerson1321/The-Terminal/releases/download/1.5.41/websetup.exe">
-    Download The Terminal Here!
+<h1 align="center">The Terminal╗ <br>
+╚══██╔══╝ <br>
+   ██║   <br>
+   ██║   <br>
+   ██║   <br>
+   ╚═╝   <br>
+<p align="center">
+  <a href="https://existingperson1321.github.io/The-Terminal">
+    <img src="https://img.shields.io/badge/Website-teal" width="100">
   </a>
-
+</p>
 <p align="center">
   <a href="https://docs.google.com/forms/d/e/1FAIpQLSfhv6YfUfVUFoAWwBMo-Ur54uTjiDgxCBrFxrKjx4G0F5u2mg/viewform?usp=dialog">
     <img src="https://img.shields.io/badge/Give us-feedback!-red" width="100">
@@ -117,138 +16,16 @@
 </p>
 <p align="center"> <img src="https://img.shields.io/badge/Made by-Hackitech-green">
 <img src="https://img.shields.io/badge/Latest release-1.5.41-blue"></p>
-  <!-- Place this tag where you want the button to render. -->
-  <!-- Continuous Sliding Carousel -->
-  <div class="carousel">
-    <div class="carousel-track">
-      <img src="index/eg1.png" alt="Screenshot 1">
-      <img src="index/eg2.png" alt="Screenshot 2">
-      <img src="index/eg3.png" alt="Screenshot 3">
-      <!-- Duplicate index for seamless loop -->
-      <img src="index/eg1.png" alt="Screenshot 1">
-      <img src="index/eg2.png" alt="Screenshot 2">
-      <img src="index/eg3.png" alt="Screenshot 3">
-    </div>
-  </div>
+A launcher for all applications I've created or bundled and include many games and apps. It's just something I like to work on in my spare time, but doesn't mean I'll fully abandon it! Again this is just a simple program for fun. All the menus and most apps are in Batch and compiled into an exe. So try it out!   
 
-  <!-- Shimeji mascot -->
-  <img id="shimeji" src="index/hackibot.gif" alt="Shimeji mascot">
-
-  <!-- More info -->
-  <h3>What is The Terminal?</h3>
-  <p>The Terminal is a small project by 
-    <a href="https://github.com/existingperson1321" target="_blank">HackiTech</a>
-    and is mainly in batch. The github page is  
-    <a href="https://github.com/existingperson1321/the-terminal" target="_blank">here</a>
-  </p>
-  <h3>Wait a second..</h3>
-  <p>This is not an actual terminal like windows terminal. More like a launcher for apps</p>
-<h3 style="text-align:center;">Requirements</h3>
-<p style="text-align:center;">
-  Minimum:<br>
-  - Windows XP<br>
-  - x86 bit<br>
-  - Tiny RAM<br><br>
-  Recommended:<br>
-  - Windows 11<br>
-  - x64 bit<br>
-  - 4GB RAM
-</p>
-
-<h3 style="text-align:center;">Patch Notes/Update Logs</h3>
-<p style="text-align:center;">
-  Patch Notes/Update Logs<br><br>
-
-  1.5.0 - 1.5.35<br>
-  - Added Doom and MiniCraft<br>
-  - Changed Java folder loading<br>
-  - Added Menu colours<br>
-  - Fixed Updates FOR REAL THIS TIME<br>
-  - Fixed Bug with HackiBot not opening, again...<br>
-  - Removed FNaF Terminal Edition for Portable Edition/Universal due to it having admin perms<br>
-  - Added new Weather app to Programs Menu (Created by tasqlab tysm)<br>
-  - Added Geometry Dash<br>
-  - Partnered with tasqlab and added Gemini and Dictionary<br>
-  - Added new Fishing RPG (Some might recognize it)<br>
-  - Added Stack<br><br>
-
-  1.3.3 - 1.5.0<br>
-  - Revamped entire Menu Selection with Sections<br>
-  - Added FNaF to The Terminal in Games Section<br><br>
-
-  1.3 - 1.3.3<br>
-  - Fixed Bug where Desktop Icon wouldn't display<br>
-  - Fixed WINfo script not running<br>
-  - Made Setup Executable less "boring" (added Welcome Page and custom images)<br><br>
-
-  1.2 - 1.3<br>
-  - Added Games: Snake, PacMan, Tetris, Pong<br>
-  - Added Rick Roll Option<br><br>
-
-  1.0 - 1.1<br>
-  - Added HackiBot<br>
-  - Added WINfo<br>
-  - Bundled JRE 1.8_461 for HackiBot dependency<br>
-  - Shrunk amount of code needed for compile
-</p>
-<h4>Contributors</h4>
-  <p>
-    <img src="https://avatars.githubusercontent.com/u/193841515?s=64&v=4" width="25" height="25" class="circle">
-    <a href="https://github.com/existingperson1321" target="_blank">HackiTech</a> <br>
-    <img src="https://avatars.githubusercontent.com/u/200307409?s=64&v=4" width="25" height="25" class="circle">
-    <a href="https://github.com/tasqlab" target="_blank">tasqlab</a> <br>
-  </p>
-  <footer>
-    <p>&copy; 2025 Hackitech | Made by 
-      <a href="https://github.com/existingperson1321" target="_blank">HackiTech</a> 
-      and 
-      <a href="https://github.com/tasqlab" target="_blank">tasqlab</a>
-    </p>
-
-  </footer>
+![Image of main menu. If this text shows, you have a problem. This is alt text](index/eg1.png)
   
-  <script>
-    // Shimeji walking logic with flipping
-    const shimeji = document.getElementById('shimeji');
-    let pos = 0;
-    let direction = 1;
 
-    function moveShimeji() {
-      pos += direction * 2; // speed in pixels
-      if (pos > window.innerWidth - 100 || pos < 0) {
-        direction *= -1; // reverse direction when hitting edge
-      }
-      shimeji.style.left = pos + 'px';
 
-      // Flip when moving right, normal when moving left
-      if (direction === 1) {
-        shimeji.style.transform = 'scaleX(-1)'; // face right
-      } else {
-        shimeji.style.transform = 'scaleX(1)'; // face left
-      }
-    }
-
-    setInterval(moveShimeji, 30); // update every 30ms
-      // Fetch latest release version + date from GitHub
-    async function loadVersion() {
-      try {
-        const response = await fetch("https://api.github.com/repos/existingperson1321/the-terminal/releases/latest");
-        const data = await response.json();
-        const version = data.tag_name; // e.g. "v1.0.0"
-        const date = new Date(data.published_at).toLocaleDateString(undefined, {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric'
-        });
-        document.getElementById("version").textContent = version;
-        document.getElementById("date").textContent = `(${date})`;
-      } catch (error) {
-        console.error("Error fetching version:", error);
-        document.getElementById("version").textContent = "v?";
-        document.getElementById("date").textContent = "(unknown)";
-      }
-    }
-    loadVersion();
-  </script>
-</body>
-</html>
+  
+  
+  
+  
+  
+> The Fine Print: Some Applications are not made by HackiTech or tasqlab.
+WINDOWS ONLY (Windows 7 and older required an extended kernel INSTALLED AND ENABLED)
