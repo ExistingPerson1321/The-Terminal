@@ -29,3 +29,12 @@ A launcher for all applications I've created or bundled and include many games a
   
 > The Fine Print: Some Applications are not made by HackiTech or tasqlab.
 WINDOWS ONLY (Windows 7 and older required an extended kernel INSTALLED AND ENABLED)
+
+Known Issues
+Windows 7:
+Issue: "The system cannot write to the specified device" showing across the screen over and over.
+Fix: Set your console font to Consolas and download AND ENABLE AnsiCon
+
+General
+Issue: Apps don't run.
+Fix: Make sure you have the Microsoft Visual C++ Redistributable 2015-2022
