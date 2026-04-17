@@ -41,10 +41,11 @@ General Bugs
 Issue: Apps don't run or display errors about missing *.dll files.
 Fix: Make sure you have the Microsoft Visual C++ Redistributable 2015-2022
 
-Thanks Again
+Thanks!
+
              ______  __            ______ ____________           ______  
              ___  / / /_____ _________  /_____  _/_  /______________  /_ 
 ________     __  /_/ /_  __ `/  ___/_  //_/__  / _  __/  _ \  ___/_  __ \
 _/_____/     _  __  / / /_/ // /__ _  ,<  __/ /  / /_ /  __/ /__ _  / / /
              /_/ /_/  \__,_/ \___/ /_/|_| /___/  \__/ \___/\___/ /_/ /_/ 
-                                                                         
+                                                                        
