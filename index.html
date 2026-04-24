@@ -3,215 +3,999 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Terminal</title>
-  <!-- Place this tag in your head or just before your close body tag. -->
+  <meta name="description" content="The Terminal - A lightweight app launcher by HackiTech">
+  <title>The Terminal | HackiTech</title>
+  
+  <!-- GitHub Buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
+  
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="index/hackibot.png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  
   <style>
-    /* Header styling */
-    header {
-      background: #4CAF50; /* green background */
-      padding: 20px;
-      color: #fff; /* white text */
+    /* ========== CSS VARIABLES & RESET ========== */
+    :root {
+      --primary: #00ff9d;
+      --primary-dark: #00cc7d;
+      --primary-glow: rgba(0, 255, 157, 0.4);
+      --secondary: #7b61ff;
+      --secondary-glow: rgba(123, 97, 255, 0.3);
+      --bg-dark: #0a0a0f;
+      --bg-card: #14141f;
+      --bg-card-hover: #1a1a2a;
+      --text-primary: #ffffff;
+      --text-secondary: #b4b4c8;
+      --text-muted: #6e6e8a;
+      --border: #2a2a4a;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.4);
+      --shadow-glow: 0 0 20px var(--primary-glow);
+      --shadow-glow-secondary: 0 0 25px var(--secondary-glow);
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+      --transition-fast: 150ms ease;
+      --transition-normal: 300ms ease;
+      --transition-slow: 500ms ease;
     }
-    header h1 {
+
+    * {
       margin: 0;
-      color: #fff; /* ensure heading text is white */
+      padding: 0;
+      box-sizing: border-box;
     }
-    img.square {
-      border-radius: 0%;
+
+    html {
+      scroll-behavior: smooth;
     }
-    img.circle {
-      border-radius: 100%;
-    }
+
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #111;
-      color: #eee;
-      text-align: center;
-      padding-top: 20px;
-      margin: 0;
-    }
-
-    a.download-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 24px;
-      background-color: #00ff99;
-      color: #111;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 6px;
-      transition: background-color 0.3s ease;
-    }
-    a.download-btn:hover {
-      background-color: #00cc77;
-    }
-
-    /* Continuous Carousel styling */
-    .carousel {
-      overflow: hidden;
+      background: 
+        radial-gradient(ellipse at top, #1a1a3a 0%, transparent 50%),
+        radial-gradient(ellipse at bottom, #0f0f2a 0%, transparent 50%),
+        var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
       position: relative;
-      max-width: 800px;
-      margin: 40px auto;
-      border-radius: 8px;
-    }
-    .carousel-track {
-      display: flex;
-      animation: scroll 30s linear infinite;
-    }
-    .carousel img {
-      width: 800px; /* adjust to your actual image width */
-      flex-shrink: 0;
-      border-radius: 8px;
-    }
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-2400px); } /* 3 index × 800px */
     }
 
-    /* Shimeji mascot styling */
-    #shimeji {
+    /* Animated Background Particles */
+    body::before {
+      content: '';
       position: fixed;
-      bottom: 0;
+      top: 0;
       left: 0;
-      width: 80px;
-      transition: left 0.03s linear, transform 0.2s linear;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(1px 1px at 20px 30px, var(--primary) 50%, transparent),
+        radial-gradient(1px 1px at 40px 70px, var(--secondary) 50%, transparent),
+        radial-gradient(1px 1px at 90px 40px, var(--primary) 50%, transparent),
+        radial-gradient(1px 1px at 160px 120px, var(--secondary) 50%, transparent);
+      background-size: 200px 200px;
+      opacity: 0.15;
+      animation: float 20s linear infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-200px); }
+    }
+
+    /* ========== HEADER ========== */
+    header {
+      background: linear-gradient(135deg, #1a4a3a 0%, #0d2a22 50%, #0a1a16 100%);
+      padding: 2rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0,255,157,0.1) 0%, transparent 70%);
+      animation: pulse 4s ease-in-out infinite;
       pointer-events: none;
     }
 
-    footer {
-      background: #333;
-      color: #aaa;
-      padding: 15px;
-      margin-top: 40px;
-      font-size: 14px;
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.05); }
     }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    header h1 i {
+      font-size: 1.4em;
+      animation: bounce 2s ease infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ========== MAIN CONTENT ========== */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* Download Section */
+    .download-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      margin: 2rem auto 3rem;
+      max-width: 700px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    }
+
+    .download-section:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md), var(--shadow-glow);
+    }
+
+    .download-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
+      background-size: 200% 100%;
+      animation: gradient-shift 3s linear infinite;
+    }
+
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .download-section p {
+      margin-bottom: 1.5rem;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    #version {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-right: 0.3rem;
+    }
+
+    #date {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Download Button */
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #0a0a0f;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      box-shadow: var(--shadow-glow);
+      position: relative;
+      overflow: hidden;
+      animation: pulse-btn 2.5s ease-in-out infinite;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 0 35px var(--primary-glow);
+      animation: none;
+    }
+
+    .download-btn:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    .download-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .download-btn:hover::before {
+      left: 100%;
+    }
+
+    @keyframes pulse-btn {
+      0%, 100% { box-shadow: var(--shadow-glow); }
+      50% { box-shadow: 0 0 30px var(--primary-glow); }
+    }
+
+    /* Badges */
+    .badges {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.9rem;
+      background: var(--bg-card-hover);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all var(--transition-fast);
+    }
+
+    .badge:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .badge i {
+      font-size: 0.9rem;
+    }
+
+    .badge.feedback { color: #ff6b6b; border-color: #3a2a2a; }
+    .badge.feedback:hover { border-color: #ff6b6b; color: #ff6b6b; }
+    
+    .badge.made { color: var(--primary); }
+    .badge.release { color: #7b61ff; }
+
+    /* ========== CAROUSEL ========== */
+    .carousel-container {
+      margin: 3rem auto;
+      max-width: 900px;
+      position: relative;
+    }
+
+    .carousel {
+      overflow: hidden;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      position: relative;
+      background: var(--bg-card);
+    }
+
+    .carousel::before,
+    .carousel::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 100px;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .carousel::before {
+      left: 0;
+      background: linear-gradient(90deg, var(--bg-card) 0%, transparent 100%);
+    }
+
+    .carousel::after {
+      right: 0;
+      background: linear-gradient(-90deg, var(--bg-card) 0%, transparent 100%);
+    }
+
+    .carousel-track {
+      display: flex;
+      animation: scroll 35s linear infinite;
+      width: max-content;
+    }
+
+    .carousel:hover .carousel-track {
+      animation-play-state: paused;
+    }
+
+    .carousel img {
+      width: 800px;
+      height: 450px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border-radius: var(--radius-md);
+      transition: transform var(--transition-normal);
+      cursor: pointer;
+    }
+
+    .carousel img:hover {
+      transform: scale(1.02);
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-2400px); }
+    }
+
+    /* Carousel Navigation Dots */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .carousel-dot.active {
+      background: var(--primary);
+      transform: scale(1.2);
+    }
+
+    /* ========== INFO SECTIONS ========== */
+    .info-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      margin: 2rem auto;
+      max-width: 800px;
+      text-align: left;
+      transition: all var(--transition-normal);
+    }
+
+    .info-section:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .info-section h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .info-section h3 i {
+      color: var(--primary);
+    }
+
+    .info-section p {
+      color: var(--text-secondary);
+      margin-bottom: 0.8rem;
+    }
+
+    .info-section a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color var(--transition-fast);
+      position: relative;
+    }
+
+    .info-section a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--secondary);
+      transition: width var(--transition-fast);
+    }
+
+    .info-section a:hover {
+      color: var(--primary);
+    }
+
+    .info-section a:hover::after {
+      width: 100%;
+    }
+
+    /* Requirements Grid */
+    .requirements {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .requirement-card {
+      background: var(--bg-card-hover);
+      padding: 1.2rem;
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--primary);
+    }
+
+    .requirement-card h4 {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .requirement-card ul {
+      list-style: none;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .requirement-card li {
+      padding: 0.2rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .requirement-card li::before {
+      content: '✓';
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .requirement-card.recommended {
+      border-left-color: var(--secondary);
+    }
+
+    .requirement-card.recommended li::before {
+      content: '★';
+      color: var(--secondary);
+    }
+
+    /* ========== CONTRIBUTORS ========== */
+    .contributors {
+      margin: 3rem auto;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .contributors h4 {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-secondary);
+    }
+
+    .contributor-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contributor {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      padding: 0.8rem 1.2rem;
+      background: var(--bg-card-hover);
+      border-radius: var(--radius-full);
+      transition: all var(--transition-fast);
+      border: 1px solid transparent;
+    }
+
+    .contributor:hover {
+      border-color: var(--primary);
+      transform: translateX(5px);
+      background: var(--bg-card);
+    }
+
+    .contributor img {
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      transition: border-color var(--transition-fast);
+    }
+
+    .contributor:hover img {
+      border-color: var(--primary);
+    }
+
+    .contributor a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color var(--transition-fast);
+    }
+
+    .contributor a:hover {
+      color: var(--primary);
+    }
+
+    /* ========== SHIMEJI MASCOT ========== */
+    #shimeji {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 70px;
+      height: auto;
+      pointer-events: none;
+      z-index: 1000;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+      transition: transform 0.1s linear;
+      animation: bounce-shimeji 3s ease-in-out infinite;
+    }
+
+    @keyframes bounce-shimeji {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    #shimeji:hover {
+      animation: none;
+      transform: scale(1.1) !important;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: linear-gradient(180deg, transparent 0%, rgba(10,10,20,0.9) 100%);
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      margin-top: 4rem;
+      text-align: center;
+    }
+
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
     footer a {
-      color: #4da6ff;
-      text-decoration: underline;
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color var(--transition-fast);
+    }
+
+    footer a:hover {
+      color: var(--primary);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    /* ========== RESPONSIVE DESIGN ========== */
+    @media (max-width: 768px) {
+      header {
+        padding: 1.5rem 1rem;
+      }
+
+      main {
+        padding: 1.5rem 1rem 3rem;
+      }
+
+      .download-section {
+        padding: 2rem 1.5rem;
+        margin: 1.5rem auto 2.5rem;
+      }
+
+      .download-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.9rem 2rem;
+      }
+
+      .carousel img {
+        width: 100vw;
+        height: auto;
+        aspect-ratio: 16/9;
+      }
+
+      @keyframes scroll {
+        100% { transform: translateX(-300vw); }
+      }
+
+      .info-section {
+        padding: 1.5rem;
+        margin: 1.5rem auto;
+      }
+
+      .requirements {
+        grid-template-columns: 1fr;
+      }
+
+      #shimeji {
+        width: 55px;
+        bottom: 10px;
+        left: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      .badges {
+        gap: 0.5rem;
+      }
+
+      .badge {
+        padding: 0.3rem 0.7rem;
+        font-size: 0.8rem;
+      }
+
+      #version {
+        font-size: 1.2rem;
+      }
+    }
+
+    /* ========== ACCESSIBILITY ========== */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Focus states for keyboard navigation */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    /* ========== SCROLL ANIMATIONS ========== */
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Loading skeleton for images */
+    .carousel img {
+      background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-card-hover) 50%, var(--bg-card) 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+    }
+
+    @keyframes loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .carousel img.loaded {
+      animation: none;
+      background: none;
     }
   </style>
 </head>
 <body>
-  <!-- Green header with white text -->
+  <!-- Animated Header -->
   <header>
-    <h1>The Terminal</h1>
+    <h1><i class="fas fa-terminal"></i> The Terminal</h1>
   </header>
 
+  <main>
+    <!-- Download Section -->
+    <section class="download-section fade-in-up">
+      <p>
+        Click below to download the latest release:<br>
+        <strong id="version"><i class="fas fa-spinner fa-spin"></i></strong> 
+        <span id="date"></span>
+      </p>
+      <a class="download-btn" href="https://github.com/ExistingPerson1321/The-Terminal/raw/refs/heads/main/The.Terminal.zip" target="_blank">
+        <i class="fas fa-download"></i> Download The Terminal
+      </a>
+      
+      <div class="badges">
+        <a href="https://forms.gle/3Th8xvcVuLRC4u3j7" class="badge feedback" target="_blank">
+          <i class="fas fa-comment-alt"></i> Feedback
+        </a>
+        <span class="badge made">
+          <i class="fas fa-code"></i> Made by Hackitech
+        </span>
+        <span class="badge release">
+          <i class="fas fa-tag"></i> Latest: <span id="badge-version">1.6.1</span>
+        </span>
+      </div>
+    </section>
 
-  <p>Click below to download the latest release:<br>
-    <strong id="version">v{version}</strong> 
-    <span id="date">({date updated})</span>
-  </p>
-  <a class="download-btn" href="https://github.com/ExistingPerson1321/The-Terminal/raw/refs/heads/main/The.Terminal.zip">
-    Download The Terminal Here!
-  </a>
+    <!-- Carousel -->
+    <section class="carousel-container fade-in-up">
+      <div class="carousel">
+        <div class="carousel-track">
+          <img src="index/eg1.png" alt="The Terminal - Screenshot 1" loading="lazy">
+          <img src="index/eg2.png" alt="The Terminal - Screenshot 2" loading="lazy">
+          <img src="index/eg3.png" alt="The Terminal - Screenshot 3" loading="lazy">
+          <!-- Duplicates for seamless loop -->
+          <img src="index/eg1.png" alt="The Terminal - Screenshot 1" loading="lazy">
+          <img src="index/eg2.png" alt="The Terminal - Screenshot 2" loading="lazy">
+          <img src="index/eg3.png" alt="The Terminal - Screenshot 3" loading="lazy">
+        </div>
+      </div>
+      <div class="carousel-dots">
+        <span class="carousel-dot active" data-index="0"></span>
+        <span class="carousel-dot" data-index="1"></span>
+        <span class="carousel-dot" data-index="2"></span>
+      </div>
+    </section>
 
-<p align="center">
-  <a href="https://forms.gle/3Th8xvcVuLRC4u3j7">
-    <img src="https://img.shields.io/badge/Give us-feedback!-red" width="100">
-  </a>
-</p>
-<p align="center"> <img src="https://img.shields.io/badge/Made by-Hackitech-green">
-<img src="https://img.shields.io/badge/Latest release-1.6.1-blue"></p>
-  <!-- Place this tag where you want the button to render. -->
-  <!-- Continuous Sliding Carousel -->
-  <div class="carousel">
-    <div class="carousel-track">
-      <img src="index/eg1.png" alt="Screenshot 1">
-      <img src="index/eg2.png" alt="Screenshot 2">
-      <img src="index/eg3.png" alt="Screenshot 3">
-      <!-- Duplicate index for seamless loop -->
-      <img src="index/eg1.png" alt="Screenshot 1">
-      <img src="index/eg2.png" alt="Screenshot 2">
-      <img src="index/eg3.png" alt="Screenshot 3">
-    </div>
-  </div>
+    <!-- What is The Terminal? -->
+    <section class="info-section fade-in-up">
+      <h3><i class="fas fa-info-circle"></i> What is The Terminal?</h3>
+      <p>
+        The Terminal is a lightweight project by 
+        <a href="https://github.com/existingperson1321" target="_blank" rel="noopener">HackiTech</a>, 
+        primarily built in Batch scripting. It serves as a customizable app launcher with a terminal-inspired interface.
+      </p>
+      <p>
+        📦 <strong>GitHub Repository:</strong> 
+        <a href="https://github.com/existingperson1321/the-terminal" target="_blank" rel="noopener">
+          github.com/existingperson1321/the-terminal
+        </a>
+      </p>
+    </section>
 
-  <!-- Shimeji mascot -->
-  <img id="shimeji" src="index/hackibot.gif" alt="Shimeji mascot">
+    <!-- Clarification -->
+    <section class="info-section fade-in-up">
+      <h3><i class="fas fa-lightbulb"></i> Quick Note</h3>
+      <p>
+        ⚠️ This isn't a command-line terminal like Windows Terminal. 
+        Think of it more as a <strong>stylish app launcher</strong> with terminal aesthetics!
+      </p>
+    </section>
 
-  <!-- More info -->
-  <h3>What is The Terminal?</h3>
-  <p>The Terminal is a small project by 
-    <a href="https://github.com/existingperson1321" target="_blank">HackiTech</a>
-    and is mainly in batch. The github page is  
-    <a href="https://github.com/existingperson1321/the-terminal" target="_blank">here</a>
-  </p>
-  <h3>Wait a second..</h3>
-  <p>This is not an actual terminal like windows terminal. More like a launcher for apps</p>
-<h3 style="text-align:center;">Requirements</h3>
-<p style="text-align:center;">
-  Minimum:<br>
-  - Windows 10<br>
-  - 32 bit<br>
-  - 4GB RAM<br><br>
-  Recommended:<br>
-  - Windows 11<br>
-  - x64 bit<br>
-  - 4GB RAM
-</p>
-<h4>Contributors</h4>
-  <p>
-    <img src="https://avatars.githubusercontent.com/u/193841515?s=64&v=4" width="25" height="25" class="circle">
-    <a href="https://github.com/existingperson1321" target="_blank">HackiTech</a> <br>
-    <img src="https://avatars.githubusercontent.com/u/200307409?s=64&v=4" width="25" height="25" class="circle">
-    <a href="https://github.com/tasqlab" target="_blank">tasqlab</a> <br>
-  </p>
+    <!-- Requirements -->
+    <section class="info-section fade-in-up">
+      <h3 style="text-align: center;"><i class="fas fa-cogs"></i> System Requirements</h3>
+      <div class="requirements">
+        <div class="requirement-card">
+          <h4>Minimum</h4>
+          <ul>
+            <li>Windows 10</li>
+            <li>32-bit architecture</li>
+            <li>4GB RAM</li>
+            <li>100MB free space</li>
+          </ul>
+        </div>
+        <div class="requirement-card recommended">
+          <h4>Recommended</h4>
+          <ul>
+            <li>Windows 11</li>
+            <li>64-bit architecture</li>
+            <li>4GB+ RAM</li>
+            <li>SSD storage</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contributors -->
+    <section class="contributors fade-in-up">
+      <h4><i class="fas fa-users"></i> Contributors</h4>
+      <div class="contributor-list">
+        <div class="contributor">
+          <img src="https://avatars.githubusercontent.com/u/193841515?s=64&v=4" 
+               alt="HackiTech" width="40" height="40" loading="lazy">
+          <a href="https://github.com/existingperson1321" target="_blank" rel="noopener">HackiTech</a>
+        </div>
+        <div class="contributor">
+          <img src="https://avatars.githubusercontent.com/u/200307409?s=64&v=4" 
+               alt="tasqlab" width="40" height="40" loading="lazy">
+          <a href="https://github.com/tasqlab" target="_blank" rel="noopener">tasqlab</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Shimeji Mascot -->
+  <img id="shimeji" src="index/hackibot.gif" alt="HackiBot Mascot" title="Click me!">
+
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Hackitech | Made by 
-      <a href="https://github.com/existingperson1321" target="_blank">HackiTech</a> 
-      and 
-      <a href="https://github.com/tasqlab" target="_blank">tasqlab</a>
+    <p>&copy; 2025 Hackitech. All rights reserved.</p>
+    <p>
+      Made with <i class="fas fa-heart" style="color: #ff6b6b;"></i> by 
+      <a href="https://github.com/existingperson1321" target="_blank" rel="noopener">HackiTech</a> & 
+      <a href="https://github.com/tasqlab" target="_blank" rel="noopener">tasqlab</a>
     </p>
-
+    <div class="footer-links">
+      <a href="https://github.com/existingperson1321/the-terminal" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+      <a href="https://forms.gle/3Th8xvcVuLRC4u3j7" target="_blank" rel="noopener">
+        <i class="fas fa-comment"></i> Feedback
+      </a>
+      <a href="#" id="report-bug">
+        <i class="fas fa-bug"></i> Report Issue
+      </a>
+    </div>
   </footer>
-  
+
   <script>
-    // Shimeji walking logic with flipping
-    const shimeji = document.getElementById('shimeji');
-    let pos = 0;
-    let direction = 1;
-
-    function moveShimeji() {
-      pos += direction * 2; // speed in pixels
-      if (pos > window.innerWidth - 100 || pos < 0) {
-        direction *= -1; // reverse direction when hitting edge
-      }
-      shimeji.style.left = pos + 'px';
-
-      // Flip when moving right, normal when moving left
-      if (direction === 1) {
-        shimeji.style.transform = 'scaleX(-1)'; // face right
-      } else {
-        shimeji.style.transform = 'scaleX(1)'; // face left
-      }
-    }
-
-    setInterval(moveShimeji, 30); // update every 30ms
-      // Fetch latest release version + date from GitHub
+    // ========== VERSION FETCH ==========
     async function loadVersion() {
+      const versionEl = document.getElementById("version");
+      const dateEl = document.getElementById("date");
+      const badgeVersion = document.getElementById("badge-version");
+      
       try {
-        const response = await fetch("https://api.github.com/repos/existingperson1321/the-terminal/releases/latest");
-        const data = await response.json();
-        const version = data.tag_name; // e.g. "v1.0.0"
-        const date = new Date(data.published_at).toLocaleDateString(undefined, {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric'
+        const response = await fetch("https://api.github.com/repos/existingperson1321/the-terminal/releases/latest", {
+          headers: { 'Accept': 'application/vnd.github.v3+json' }
         });
-        document.getElementById("version").textContent = version;
-        document.getElementById("date").textContent = `(${date})`;
+        
+        if (!response.ok) throw new Error('API request failed');
+        
+        const data = await response.json();
+        const version = data.tag_name || "v1.6.1";
+        const date = new Date(data.published_at).toLocaleDateString(undefined, {
+          year: 'numeric', month: 'short', day: 'numeric'
+        });
+        
+        versionEl.innerHTML = `<i class="fas fa-check-circle"></i> ${version}`;
+        versionEl.style.color = 'var(--primary)';
+        dateEl.textContent = `• Updated ${date}`;
+        badgeVersion.textContent = version.replace('v', '');
       } catch (error) {
-        console.error("Error fetching version:", error);
-        document.getElementById("version").textContent = "v?";
-        document.getElementById("date").textContent = "(unknown)";
+        console.warn("Using fallback version:", error);
+        versionEl.innerHTML = `<i class="fas fa-exclamation-triangle"></i> v1.6.1`;
+        dateEl.textContent = "(latest)";
       }
     }
     loadVersion();
+
+    // ========== SHIMEJI MASCOT ==========
+    const shimeji = document.getElementById('shimeji');
+    let shimejiPos = 20;
+    let shimejiDir = 1;
+    let shimejiSpeed = 1.5;
+
+    function animateShimeji() {
+      const maxX = window.innerWidth - 90;
+      shimejiPos += shimejiDir * shimejiSpeed;
+      
+      if (shimejiPos >= maxX || shimejiPos <= 20) {
+        shimejiDir *= -1;
+        shimeji.style.transform = `scaleX(${shimejiDir === 1 ? -1 : 1})`;
+      }
+      
+      shimeji.style.left = shimejiPos + 'px';
+      requestAnimationFrame(animateShimeji);
+    }
+    animateShimeji();
+
+    // Click interaction
+    shimeji.addEventListener('click', () => {
+      shimeji.style.animation = 'bounce-shimeji 0.3s ease 3';
+      setTimeout(() => {
+        shimeji.style.animation = 'bounce-shimeji 3s ease-in-out infinite';
+      }, 1000);
+    });
+
+    // ========== CAROUSEL DOTS ==========
+    const dots = document.querySelectorAll('.carousel-dot');
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        dots.forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+        // Could add scroll-to functionality here
+      });
+    });
+
+    // ========== SCROLL ANIMATIONS ==========
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in-up').forEach(el => {
+      observer.observe(el);
+    });
+
+    // ========== IMAGE LOADING ==========
+    document.querySelectorAll('.carousel img').forEach(img => {
+      img.addEventListener('load', function() {
+        this.classList.add('loaded');
+      });
+    });
+
+    // ========== BUG REPORT ==========
+    document.getElementById('report-bug')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.open('https://github.com/existingperson1321/the-terminal/issues/new', '_blank');
+    });
+
+    // ========== KEYBOARD NAVIGATION ==========
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        // Close any modals if added later
+        document.activeElement?.blur();
+      }
+    });
+
+    // ========== PERFORMANCE: Reduce motion preference ==========
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.style.setProperty('--transition-fast', '0.01ms');
+      document.documentElement.style.setProperty('--transition-normal', '0.01ms');
+      document.documentElement.style.setProperty('--transition-slow', '0.01ms');
+    }
   </script>
 </body>
 </html>
