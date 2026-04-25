@@ -3,47 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The Terminal - A lightweight app launcher by HackiTech">
-  <title>The Terminal | HackiTech</title>
+  <meta name="description" content="The Terminal // Cyberpunk App Launcher">
+  <title>THE_TERMINAL // v{version}</title>
   
   <!-- GitHub Buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="index/hackibot.png">
   
   <style>
-    /* ========== CSS VARIABLES & RESET ========== */
+    /* ========== CYBERPUNK VARIABLES ========== */
     :root {
-      --primary: #00ff9d;
-      --primary-dark: #00cc7d;
-      --primary-glow: rgba(0, 255, 157, 0.4);
-      --secondary: #7b61ff;
-      --secondary-glow: rgba(123, 97, 255, 0.3);
-      --bg-dark: #0a0a0f;
-      --bg-card: #14141f;
-      --bg-card-hover: #1a1a2a;
-      --text-primary: #ffffff;
-      --text-secondary: #b4b4c8;
-      --text-muted: #6e6e8a;
-      --border: #2a2a4a;
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-      --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.4);
-      --shadow-glow: 0 0 20px var(--primary-glow);
-      --shadow-glow-secondary: 0 0 25px var(--secondary-glow);
-      --radius-sm: 8px;
-      --radius-md: 16px;
-      --radius-lg: 24px;
-      --radius-full: 9999px;
-      --transition-fast: 150ms ease;
-      --transition-normal: 300ms ease;
-      --transition-slow: 500ms ease;
+      /* Neon Colors */
+      --neon-cyan: #00f5ff;
+      --neon-pink: #ff00ff;
+      --neon-purple: #9d00ff;
+      --neon-green: #00ff9d;
+      --neon-yellow: #fff01a;
+      
+      /* Base Colors */
+      --bg-primary: #050508;
+      --bg-secondary: #0a0a14;
+      --bg-tertiary: #111122;
+      --bg-card: #0d0d1a;
+      
+      /* Text */
+      --text-primary: #e0e0ff;
+      --text-secondary: #8888aa;
+      --text-dim: #444466;
+      --text-neon: var(--neon-cyan);
+      
+      /* Effects */
+      --glow-cyan: 0 0 10px rgba(0, 245, 255, 0.7), 0 0 25px rgba(0, 245, 255, 0.4), 0 0 50px rgba(0, 245, 255, 0.2);
+      --glow-pink: 0 0 10px rgba(255, 0, 255, 0.7), 0 0 25px rgba(255, 0, 255, 0.4), 0 0 50px rgba(255, 0, 255, 0.2);
+      --glow-purple: 0 0 10px rgba(157, 0, 255, 0.7), 0 0 25px rgba(157, 0, 255, 0.4);
+      --glow-green: 0 0 10px rgba(0, 255, 157, 0.7), 0 0 25px rgba(0, 255, 157, 0.4);
+      
+      /* Borders */
+      --border-neon: 2px solid var(--neon-cyan);
+      --border-pink: 2px solid var(--neon-pink);
+      --border-dashed: 1px dashed var(--text-dim);
+      
+      /* Fonts */
+      --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+      --font-display: 'Orbitron', 'Rajdhani', sans-serif;
+      
+      /* Spacing & Radius */
+      --radius-sharp: 2px;
+      --radius-card: 4px;
+      --spacing-sm: 0.5rem;
+      --spacing-md: 1rem;
+      --spacing-lg: 2rem;
     }
 
+    /* ========== RESET & BASE ========== */
     * {
       margin: 0;
       padding: 0;
@@ -55,116 +73,167 @@
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      background: 
-        radial-gradient(ellipse at top, #1a1a3a 0%, transparent 50%),
-        radial-gradient(ellipse at bottom, #0f0f2a 0%, transparent 50%),
-        var(--bg-dark);
+      font-family: var(--font-mono);
+      background-color: var(--bg-primary);
+      background-image: 
+        /* Grid overlay */
+        linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+        /* Scanlines */
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 1px,
+          rgba(0, 0, 0, 0.3) 1px,
+          rgba(0, 0, 0, 0.3) 2px
+        ),
+        /* Noise texture */
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
       color: var(--text-primary);
-      line-height: 1.6;
+      line-height: 1.7;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* Animated Background Particles */
-    body::before {
+    /* CRT Flicker Effect */
+    body::after {
       content: '';
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: 
-        radial-gradient(1px 1px at 20px 30px, var(--primary) 50%, transparent),
-        radial-gradient(1px 1px at 40px 70px, var(--secondary) 50%, transparent),
-        radial-gradient(1px 1px at 90px 40px, var(--primary) 50%, transparent),
-        radial-gradient(1px 1px at 160px 120px, var(--secondary) 50%, transparent);
-      background-size: 200px 200px;
-      opacity: 0.15;
-      animation: float 20s linear infinite;
+      background: linear-gradient(
+        rgba(18, 16, 32, 0) 50%,
+        rgba(0, 245, 255, 0.02) 50%
+      );
+      background-size: 100% 4px;
       pointer-events: none;
-      z-index: -1;
+      z-index: 9999;
+      animation: flicker 0.15s infinite;
+      opacity: 0.1;
     }
 
-    @keyframes float {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-200px); }
+    @keyframes flicker {
+      0%, 100% { opacity: 0.08; }
+      50% { opacity: 0.12; }
+    }
+
+    /* Glitch Animation Keyframes */
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    @keyframes glitch-text {
+      0% { text-shadow: 0 0 0 var(--neon-cyan); }
+      25% { text-shadow: -2px 0 var(--neon-pink), 2px 0 var(--neon-cyan); }
+      50% { text-shadow: 2px 0 var(--neon-purple), -2px 0 var(--neon-cyan); }
+      75% { text-shadow: -2px 0 var(--neon-cyan), 2px 0 var(--neon-pink); }
+      100% { text-shadow: 0 0 0 var(--neon-cyan); }
+    }
+
+    @keyframes scanline {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100vh); }
+    }
+
+    @keyframes pulse-neon {
+      0%, 100% { box-shadow: var(--glow-cyan); }
+      50% { box-shadow: var(--glow-pink); }
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
     }
 
     /* ========== HEADER ========== */
     header {
-      background: linear-gradient(135deg, #1a4a3a 0%, #0d2a22 50%, #0a1a16 100%);
-      padding: 2rem 1.5rem;
+      background: var(--bg-secondary);
+      border-bottom: var(--border-neon);
+      padding: 1.5rem 1rem;
       position: relative;
       overflow: hidden;
-      border-bottom: 1px solid var(--border);
     }
 
     header::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(0,255,157,0.1) 0%, transparent 70%);
-      animation: pulse 4s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.3; transform: scale(1); }
-      50% { opacity: 0.6; transform: scale(1.05); }
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, 
+        transparent, 
+        var(--neon-cyan), 
+        var(--neon-pink), 
+        var(--neon-purple), 
+        var(--neon-cyan), 
+        transparent
+      );
+      animation: scanline 8s linear infinite;
     }
 
     header h1 {
-      margin: 0;
-      font-size: clamp(1.8rem, 5vw, 2.5rem);
-      font-weight: 700;
-      background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      position: relative;
-      display: inline-flex;
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      text-shadow: var(--glow-cyan);
+      animation: glitch-text 3s infinite;
+      display: flex;
       align-items: center;
-      gap: 0.5rem;
+      justify-content: center;
+      gap: 0.75rem;
+      position: relative;
     }
 
     header h1 i {
-      font-size: 1.4em;
-      animation: bounce 2s ease infinite;
+      font-size: 1.3em;
+      color: var(--neon-pink);
+      animation: pulse-neon 2s ease-in-out infinite;
     }
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+    /* Corner decorations */
+    header::after {
+      content: '█▓▒░';
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      opacity: 0.6;
     }
 
     /* ========== MAIN CONTENT ========== */
     main {
-      max-width: 1200px;
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 2rem 1.5rem 4rem;
+      padding: 2rem 1rem 4rem;
     }
 
-    /* Download Section */
+    /* ========== DOWNLOAD SECTION ========== */
     .download-section {
       background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 2.5rem 2rem;
-      margin: 2rem auto 3rem;
-      max-width: 700px;
-      box-shadow: var(--shadow-md);
+      border: var(--border-neon);
+      border-radius: var(--radius-card);
+      padding: 2rem;
+      margin: 2rem auto;
       position: relative;
       overflow: hidden;
-      transition: transform var(--transition-normal), box-shadow var(--transition-normal);
-    }
-
-    .download-section:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md), var(--shadow-glow);
     }
 
     .download-section::before {
@@ -174,63 +243,61 @@
       left: 0;
       right: 0;
       height: 3px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
-      background-size: 200% 100%;
-      animation: gradient-shift 3s linear infinite;
+      background: linear-gradient(90deg, 
+        var(--neon-cyan), 
+        var(--neon-pink), 
+        var(--neon-purple),
+        var(--neon-cyan)
+      );
+      background-size: 300% 100%;
+      animation: gradient-shift 4s linear infinite;
     }
 
     @keyframes gradient-shift {
       0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
+      100% { background-position: 300% 50%; }
     }
 
     .download-section p {
       margin-bottom: 1.5rem;
       color: var(--text-secondary);
-      font-size: 1.1rem;
-    }
-
-    #version {
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: var(--primary);
-      margin-right: 0.3rem;
-    }
-
-    #date {
-      color: var(--text-muted);
       font-size: 0.95rem;
     }
 
-    /* Download Button */
+    #version {
+      font-weight: 700;
+      color: var(--neon-green);
+      text-shadow: var(--glow-green);
+      font-size: 1.2rem;
+    }
+
+    #date {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+
+    /* Download Button - Cyberpunk Style */
     .download-btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
-      padding: 1rem 2.5rem;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      color: #0a0a0f;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      background: transparent;
+      color: var(--neon-cyan);
       text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-      border-radius: var(--radius-full);
-      border: none;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border: 2px solid var(--neon-cyan);
+      border-radius: var(--radius-sharp);
       cursor: pointer;
-      transition: all var(--transition-normal);
-      box-shadow: var(--shadow-glow);
+      transition: all 0.2s ease;
       position: relative;
       overflow: hidden;
-      animation: pulse-btn 2.5s ease-in-out infinite;
-    }
-
-    .download-btn:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 0 35px var(--primary-glow);
-      animation: none;
-    }
-
-    .download-btn:active {
-      transform: translateY(1px) scale(0.98);
+      text-shadow: 0 0 5px var(--neon-cyan);
+      box-shadow: var(--glow-cyan);
     }
 
     .download-btn::before {
@@ -240,57 +307,70 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: left 0.5s ease;
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(0, 245, 255, 0.2), 
+        transparent
+      );
+      transition: left 0.4s ease;
+    }
+
+    .download-btn:hover {
+      background: rgba(0, 245, 255, 0.1);
+      color: var(--bg-primary);
+      text-shadow: none;
+      box-shadow: var(--glow-pink);
+      border-color: var(--neon-pink);
+      transform: translateX(3px);
     }
 
     .download-btn:hover::before {
       left: 100%;
     }
 
-    @keyframes pulse-btn {
-      0%, 100% { box-shadow: var(--shadow-glow); }
-      50% { box-shadow: 0 0 30px var(--primary-glow); }
+    .download-btn:active {
+      transform: scale(0.98);
     }
 
     /* Badges */
     .badges {
       display: flex;
       justify-content: center;
-      gap: 1rem;
+      gap: 0.75rem;
       flex-wrap: wrap;
-      margin: 1.5rem 0;
+      margin-top: 1.5rem;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      padding: 0.4rem 0.9rem;
-      background: var(--bg-card-hover);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-full);
-      font-size: 0.85rem;
-      font-weight: 500;
+      padding: 0.35rem 0.8rem;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--text-dim);
+      border-left: 3px solid var(--neon-cyan);
+      border-radius: var(--radius-sharp);
+      font-size: 0.8rem;
       color: var(--text-secondary);
-      transition: all var(--transition-fast);
+      transition: all 0.2s ease;
     }
 
     .badge:hover {
-      border-color: var(--primary);
-      color: var(--primary);
+      border-color: var(--neon-pink);
+      color: var(--neon-pink);
+      box-shadow: var(--glow-pink);
       transform: translateY(-2px);
     }
 
     .badge i {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
-    .badge.feedback { color: #ff6b6b; border-color: #3a2a2a; }
-    .badge.feedback:hover { border-color: #ff6b6b; color: #ff6b6b; }
+    .badge.feedback { border-left-color: #ff4757; color: #ff6b8a; }
+    .badge.feedback:hover { border-color: #ff4757; color: #ff4757; box-shadow: 0 0 15px rgba(255, 71, 87, 0.5); }
     
-    .badge.made { color: var(--primary); }
-    .badge.release { color: #7b61ff; }
+    .badge.made { border-left-color: var(--neon-green); }
+    .badge.release { border-left-color: var(--neon-purple); color: #c4a5ff; }
 
     /* ========== CAROUSEL ========== */
     .carousel-container {
@@ -301,37 +381,36 @@
 
     .carousel {
       overflow: hidden;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-md);
+      border: var(--border-neon);
+      border-radius: var(--radius-card);
       position: relative;
       background: var(--bg-card);
+      box-shadow: var(--glow-cyan);
     }
 
-    .carousel::before,
-    .carousel::after {
+    /* Glitch overlay on carousel */
+    .carousel::before {
       content: '';
       position: absolute;
       top: 0;
-      width: 100px;
-      height: 100%;
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    .carousel::before {
       left: 0;
-      background: linear-gradient(90deg, var(--bg-card) 0%, transparent 100%);
-    }
-
-    .carousel::after {
       right: 0;
-      background: linear-gradient(-90deg, var(--bg-card) 0%, transparent 100%);
+      bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 245, 255, 0.03) 2px,
+        rgba(0, 245, 255, 0.03) 4px
+      );
+      pointer-events: none;
+      z-index: 1;
+      animation: scanline 6s linear infinite;
     }
 
     .carousel-track {
       display: flex;
-      animation: scroll 35s linear infinite;
+      animation: scroll 40s linear infinite;
       width: max-content;
     }
 
@@ -344,13 +423,14 @@
       height: 450px;
       object-fit: cover;
       flex-shrink: 0;
-      border-radius: var(--radius-md);
-      transition: transform var(--transition-normal);
-      cursor: pointer;
+      border-radius: var(--radius-sharp);
+      filter: contrast(1.1) saturate(1.2);
+      transition: filter 0.3s ease;
+      cursor: crosshair;
     }
 
     .carousel img:hover {
-      transform: scale(1.02);
+      filter: contrast(1.2) saturate(1.4) brightness(1.1);
     }
 
     @keyframes scroll {
@@ -358,69 +438,71 @@
       100% { transform: translateX(-2400px); }
     }
 
-    /* Carousel Navigation Dots */
-    .carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-top: 1rem;
-    }
-
-    .carousel-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--border);
-      cursor: pointer;
-      transition: all var(--transition-fast);
-    }
-
-    .carousel-dot.active {
-      background: var(--primary);
-      transform: scale(1.2);
+    /* Carousel corner markers */
+    .carousel::after {
+      content: '◢◣';
+      position: absolute;
+      bottom: 8px;
+      right: 12px;
+      color: var(--neon-cyan);
+      font-size: 0.7rem;
+      z-index: 2;
+      text-shadow: var(--glow-cyan);
     }
 
     /* ========== INFO SECTIONS ========== */
     .info-section {
       background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 2rem;
+      border: 1px solid var(--text-dim);
+      border-left: 3px solid var(--neon-cyan);
+      border-radius: var(--radius-card);
+      padding: 1.5rem;
       margin: 2rem auto;
       max-width: 800px;
-      text-align: left;
-      transition: all var(--transition-normal);
+      position: relative;
     }
 
-    .info-section:hover {
-      border-color: var(--primary);
-      box-shadow: var(--shadow-glow);
+    .info-section::before {
+      content: '>';
+      position: absolute;
+      left: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--neon-pink);
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-shadow: var(--glow-pink);
+      animation: blink 1s step-end infinite;
     }
 
     .info-section h3 {
-      font-size: 1.4rem;
+      font-family: var(--font-display);
+      font-size: 1.2rem;
       margin-bottom: 1rem;
-      color: var(--text-primary);
+      color: var(--neon-cyan);
+      text-transform: uppercase;
+      letter-spacing: 2px;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
     .info-section h3 i {
-      color: var(--primary);
+      font-size: 1rem;
     }
 
     .info-section p {
       color: var(--text-secondary);
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
     }
 
     .info-section a {
-      color: var(--secondary);
+      color: var(--neon-pink);
       text-decoration: none;
       font-weight: 500;
-      transition: color var(--transition-fast);
       position: relative;
+      transition: color 0.2s ease;
     }
 
     .info-section a::after {
@@ -429,13 +511,14 @@
       bottom: -2px;
       left: 0;
       width: 0;
-      height: 2px;
-      background: var(--secondary);
-      transition: width var(--transition-fast);
+      height: 1px;
+      background: var(--neon-pink);
+      transition: width 0.2s ease;
+      box-shadow: var(--glow-pink);
     }
 
     .info-section a:hover {
-      color: var(--primary);
+      color: var(--neon-cyan);
     }
 
     .info-section a:hover::after {
@@ -445,52 +528,68 @@
     /* Requirements Grid */
     .requirements {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 1.2rem;
     }
 
     .requirement-card {
-      background: var(--bg-card-hover);
-      padding: 1.2rem;
-      border-radius: var(--radius-sm);
-      border-left: 3px solid var(--primary);
+      background: var(--bg-tertiary);
+      padding: 1rem;
+      border: 1px solid var(--text-dim);
+      border-radius: var(--radius-sharp);
+      position: relative;
+    }
+
+    .requirement-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--neon-cyan);
     }
 
     .requirement-card h4 {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-bottom: 0.6rem;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
     }
 
     .requirement-card ul {
       list-style: none;
       color: var(--text-secondary);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
     .requirement-card li {
-      padding: 0.2rem 0;
+      padding: 0.25rem 0;
       display: flex;
       align-items: center;
       gap: 0.4rem;
     }
 
     .requirement-card li::before {
-      content: '✓';
-      color: var(--primary);
+      content: '>';
+      color: var(--neon-green);
       font-weight: bold;
     }
 
     .requirement-card.recommended {
-      border-left-color: var(--secondary);
+      border-left: 3px solid var(--neon-purple);
+    }
+
+    .requirement-card.recommended::before {
+      background: var(--neon-purple);
     }
 
     .requirement-card.recommended li::before {
       content: '★';
-      color: var(--secondary);
+      color: var(--neon-purple);
     }
 
     /* ========== CONTRIBUTORS ========== */
@@ -501,15 +600,18 @@
     }
 
     .contributors h4 {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-      color: var(--text-secondary);
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--text-dim);
+      margin-bottom: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
     .contributor-list {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.8rem;
     }
 
     .contributor {
@@ -517,90 +619,96 @@
       align-items: center;
       justify-content: center;
       gap: 0.8rem;
-      padding: 0.8rem 1.2rem;
-      background: var(--bg-card-hover);
-      border-radius: var(--radius-full);
-      transition: all var(--transition-fast);
-      border: 1px solid transparent;
+      padding: 0.7rem 1rem;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--text-dim);
+      border-radius: var(--radius-sharp);
+      transition: all 0.2s ease;
     }
 
     .contributor:hover {
-      border-color: var(--primary);
-      transform: translateX(5px);
-      background: var(--bg-card);
+      border-color: var(--neon-cyan);
+      box-shadow: var(--glow-cyan);
+      transform: translateX(4px);
     }
 
     .contributor img {
-      border-radius: 50%;
-      border: 2px solid var(--border);
-      transition: border-color var(--transition-fast);
+      border: 2px solid var(--text-dim);
+      border-radius: var(--radius-sharp);
+      transition: border-color 0.2s ease;
     }
 
     .contributor:hover img {
-      border-color: var(--primary);
+      border-color: var(--neon-pink);
     }
 
     .contributor a {
       color: var(--text-primary);
       text-decoration: none;
       font-weight: 500;
-      transition: color var(--transition-fast);
+      transition: color 0.2s ease;
     }
 
     .contributor a:hover {
-      color: var(--primary);
+      color: var(--neon-cyan);
+      text-shadow: var(--glow-cyan);
     }
 
     /* ========== SHIMEJI MASCOT ========== */
     #shimeji {
       position: fixed;
-      bottom: 20px;
-      left: 20px;
-      width: 70px;
+      bottom: 25px;
+      left: 25px;
+      width: 65px;
       height: auto;
       pointer-events: none;
       z-index: 1000;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+      filter: drop-shadow(0 0 8px var(--neon-purple));
       transition: transform 0.1s linear;
-      animation: bounce-shimeji 3s ease-in-out infinite;
-    }
-
-    @keyframes bounce-shimeji {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+      image-rendering: pixelated;
     }
 
     #shimeji:hover {
-      animation: none;
-      transform: scale(1.1) !important;
-      cursor: pointer;
+      filter: drop-shadow(0 0 15px var(--neon-pink));
+      cursor: crosshair;
       pointer-events: auto;
     }
 
     /* ========== FOOTER ========== */
     footer {
-      background: linear-gradient(180deg, transparent 0%, rgba(10,10,20,0.9) 100%);
-      border-top: 1px solid var(--border);
-      padding: 2rem 1.5rem;
+      background: var(--bg-secondary);
+      border-top: var(--border-dashed);
+      padding: 2rem 1rem;
       margin-top: 4rem;
       text-align: center;
+      position: relative;
+    }
+
+    footer::before {
+      content: '░▒▓█ SYSTEM END █▓▒░';
+      display: block;
+      color: var(--text-dim);
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      margin-bottom: 1rem;
+      opacity: 0.7;
     }
 
     footer p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
     }
 
     footer a {
-      color: var(--secondary);
+      color: var(--neon-purple);
       text-decoration: none;
-      font-weight: 500;
-      transition: color var(--transition-fast);
+      transition: color 0.2s ease;
     }
 
     footer a:hover {
-      color: var(--primary);
+      color: var(--neon-cyan);
+      text-shadow: var(--glow-cyan);
     }
 
     .footer-links {
@@ -616,32 +724,93 @@
       align-items: center;
       gap: 0.4rem;
       color: var(--text-secondary);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
     }
 
     .footer-links a:hover {
-      color: var(--primary);
+      color: var(--neon-cyan);
+      transform: translateY(-2px);
     }
 
-    /* ========== RESPONSIVE DESIGN ========== */
-    @media (max-width: 768px) {
-      header {
-        padding: 1.5rem 1rem;
-      }
+    .footer-links a i {
+      font-size: 0.9rem;
+    }
 
-      main {
-        padding: 1.5rem 1rem 3rem;
+    /* ========== TERMINAL CURSOR EFFECT ========== */
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 1.2em;
+      background: var(--neon-cyan);
+      margin-left: 2px;
+      animation: blink 1s step-end infinite;
+      vertical-align: text-bottom;
+    }
+
+    /* ========== GLITCH TEXT UTILITY ========== */
+    .glitch {
+      position: relative;
+      animation: glitch-text 2.5s infinite;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .glitch::before {
+      left: 2px;
+      text-shadow: -2px 0 var(--neon-pink);
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim-1 2s infinite linear alternate-reverse;
+    }
+
+    .glitch::after {
+      left: -2px;
+      text-shadow: -2px 0 var(--neon-purple);
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim-2 3s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-anim-1 {
+      0% { clip: rect(30px, 9999px, 10px, 0); }
+      25% { clip: rect(12px, 9999px, 60px, 0); }
+      50% { clip: rect(60px, 9999px, 25px, 0); }
+      75% { clip: rect(40px, 9999px, 45px, 0); }
+      100% { clip: rect(20px, 9999px, 70px, 0); }
+    }
+
+    @keyframes glitch-anim-2 {
+      0% { clip: rect(15px, 9999px, 65px, 0); }
+      25% { clip: rect(50px, 9999px, 20px, 0); }
+      50% { clip: rect(25px, 9999px, 55px, 0); }
+      75% { clip: rect(70px, 9999px, 10px, 0); }
+      100% { clip: rect(35px, 9999px, 40px, 0); }
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.4rem;
+        letter-spacing: 2px;
       }
 
       .download-section {
-        padding: 2rem 1.5rem;
-        margin: 1.5rem auto 2.5rem;
+        padding: 1.5rem;
+        margin: 1.5rem auto;
       }
 
       .download-btn {
         width: 100%;
         justify-content: center;
-        padding: 0.9rem 2rem;
+        font-size: 0.95rem;
+        padding: 0.8rem 1.5rem;
       }
 
       .carousel img {
@@ -655,7 +824,7 @@
       }
 
       .info-section {
-        padding: 1.5rem;
+        padding: 1.2rem;
         margin: 1.5rem auto;
       }
 
@@ -664,15 +833,22 @@
       }
 
       #shimeji {
-        width: 55px;
-        bottom: 10px;
-        left: 10px;
+        width: 50px;
+        bottom: 15px;
+        left: 15px;
+      }
+
+      .footer-links {
+        gap: 1rem;
+        flex-direction: column;
+        align-items: center;
       }
     }
 
     @media (max-width: 480px) {
       header h1 {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
+        letter-spacing: 1px;
       }
 
       .badges {
@@ -680,12 +856,12 @@
       }
 
       .badge {
-        padding: 0.3rem 0.7rem;
-        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
       }
 
       #version {
-        font-size: 1.2rem;
+        font-size: 1rem;
       }
     }
 
@@ -698,106 +874,94 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
+      body::after {
+        display: none;
+      }
     }
 
-    /* Focus states for keyboard navigation */
     a:focus-visible,
     button:focus-visible {
-      outline: 2px solid var(--primary);
-      outline-offset: 2px;
+      outline: 2px solid var(--neon-cyan);
+      outline-offset: 3px;
+      box-shadow: var(--glow-cyan);
     }
 
-    /* ========== SCROLL ANIMATIONS ========== */
-    .fade-in-up {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .fade-in-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Loading skeleton for images */
-    .carousel img {
-      background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-card-hover) 50%, var(--bg-card) 75%);
+    /* ========== LOADING STATES ========== */
+    .skeleton {
+      background: linear-gradient(90deg, 
+        var(--bg-tertiary) 25%, 
+        var(--bg-card) 50%, 
+        var(--bg-tertiary) 75%
+      );
       background-size: 200% 100%;
       animation: loading 1.5s infinite;
+      border-radius: var(--radius-sharp);
     }
 
     @keyframes loading {
       0% { background-position: 200% 0; }
       100% { background-position: -200% 0; }
     }
-
-    .carousel img.loaded {
-      animation: none;
-      background: none;
-    }
   </style>
 </head>
 <body>
-  <!-- Animated Header -->
+  <!-- Cyberpunk Header -->
   <header>
-    <h1><i class="fas fa-terminal"></i> The Terminal</h1>
+    <h1><i class="fas fa-terminal"></i> THE_TERMINAL</h1>
   </header>
 
   <main>
     <!-- Download Section -->
-    <section class="download-section fade-in-up">
+    <section class="download-section">
       <p>
-        Click below to download the latest release:<br>
-        <strong id="version"><i class="fas fa-spinner fa-spin"></i></strong> 
-        <span id="date"></span>
+        <span style="color: var(--neon-cyan)">></span> INITIATE DOWNLOAD SEQUENCE:<br>
+        <strong id="version" class="skeleton" style="width: 80px; display: inline-block;"></strong> 
+        <span id="date"></span><span class="cursor"></span>
       </p>
       <a class="download-btn" href="https://github.com/ExistingPerson1321/The-Terminal/raw/refs/heads/main/The.Terminal.zip" target="_blank">
-        <i class="fas fa-download"></i> Download The Terminal
+        <i class="fas fa-download"></i> [ DOWNLOAD v{version} ]
       </a>
       
       <div class="badges">
         <a href="https://forms.gle/3Th8xvcVuLRC4u3j7" class="badge feedback" target="_blank">
-          <i class="fas fa-comment-alt"></i> Feedback
+          <i class="fas fa-exclamation-triangle"></i> FEEDBACK
         </a>
         <span class="badge made">
-          <i class="fas fa-code"></i> Made by Hackitech
+          <i class="fas fa-code"></i> HACKITECH
         </span>
         <span class="badge release">
-          <i class="fas fa-tag"></i> Latest: <span id="badge-version">1.6.1</span>
+          <i class="fas fa-tag"></i> REL: <span id="badge-version">1.6.1</span>
         </span>
       </div>
     </section>
 
     <!-- Carousel -->
-    <section class="carousel-container fade-in-up">
+    <section class="carousel-container">
       <div class="carousel">
         <div class="carousel-track">
-          <img src="index/eg1.png" alt="The Terminal - Screenshot 1" loading="lazy">
-          <img src="index/eg2.png" alt="The Terminal - Screenshot 2" loading="lazy">
-          <img src="index/eg3.png" alt="The Terminal - Screenshot 3" loading="lazy">
-          <!-- Duplicates for seamless loop -->
-          <img src="index/eg1.png" alt="The Terminal - Screenshot 1" loading="lazy">
-          <img src="index/eg2.png" alt="The Terminal - Screenshot 2" loading="lazy">
-          <img src="index/eg3.png" alt="The Terminal - Screenshot 3" loading="lazy">
+          <img src="index/eg1.png" alt="TERMINAL_VIEW_01" loading="lazy">
+          <img src="index/eg2.png" alt="TERMINAL_VIEW_02" loading="lazy">
+          <img src="index/eg3.png" alt="TERMINAL_VIEW_03" loading="lazy">
+          <!-- Loop duplicates -->
+          <img src="index/eg1.png" alt="TERMINAL_VIEW_01" loading="lazy">
+          <img src="index/eg2.png" alt="TERMINAL_VIEW_02" loading="lazy">
+          <img src="index/eg3.png" alt="TERMINAL_VIEW_03" loading="lazy">
         </div>
-      </div>
-      <div class="carousel-dots">
-        <span class="carousel-dot active" data-index="0"></span>
-        <span class="carousel-dot" data-index="1"></span>
-        <span class="carousel-dot" data-index="2"></span>
       </div>
     </section>
 
-    <!-- What is The Terminal? -->
-    <section class="info-section fade-in-up">
-      <h3><i class="fas fa-info-circle"></i> What is The Terminal?</h3>
+    <!-- Info: What is The Terminal? -->
+    <section class="info-section">
+      <h3><i class="fas fa-info-circle"></i> // PROJECT_INFO</h3>
       <p>
-        The Terminal is a lightweight project by 
-        <a href="https://github.com/existingperson1321" target="_blank" rel="noopener">HackiTech</a>, 
-        primarily built in Batch scripting. It serves as a customizable app launcher with a terminal-inspired interface.
+        <span style="color: var(--neon-cyan)">></span> THE_TERMINAL is a lightweight launcher by 
+        <a href="https://github.com/existingperson1321" target="_blank" rel="noopener">HACKITECH</a>.
       </p>
       <p>
-        📦 <strong>GitHub Repository:</strong> 
+        <span style="color: var(--neon-cyan)">></span> Built primarily in <strong>Batch scripting</strong> with terminal aesthetics.
+      </p>
+      <p>
+        <span style="color: var(--neon-cyan)">></span> REPO: 
         <a href="https://github.com/existingperson1321/the-terminal" target="_blank" rel="noopener">
           github.com/existingperson1321/the-terminal
         </a>
@@ -805,51 +969,53 @@
     </section>
 
     <!-- Clarification -->
-    <section class="info-section fade-in-up">
-      <h3><i class="fas fa-lightbulb"></i> Quick Note</h3>
+    <section class="info-section">
+      <h3><i class="fas fa-lightbulb"></i> // SYSTEM_NOTE</h3>
       <p>
-        ⚠️ This isn't a command-line terminal like Windows Terminal. 
-        Think of it more as a <strong>stylish app launcher</strong> with terminal aesthetics!
+        <span style="color: var(--neon-yellow)">⚠ WARNING:</span> This is NOT a command-line terminal like Windows Terminal.
+      </p>
+      <p>
+        <span style="color: var(--neon-cyan)">></span> Think of it as a <strong>cyber-styled app launcher</strong> with retro-futuristic UI.
       </p>
     </section>
 
     <!-- Requirements -->
-    <section class="info-section fade-in-up">
-      <h3 style="text-align: center;"><i class="fas fa-cogs"></i> System Requirements</h3>
+    <section class="info-section">
+      <h3 style="text-align: center;"><i class="fas fa-cogs"></i> // SYS_REQUIREMENTS</h3>
       <div class="requirements">
         <div class="requirement-card">
-          <h4>Minimum</h4>
+          <h4>[ MINIMUM ]</h4>
           <ul>
             <li>Windows 10</li>
-            <li>32-bit architecture</li>
+            <li>x86 (32-bit)</li>
             <li>4GB RAM</li>
-            <li>100MB free space</li>
+            <li>100MB storage</li>
           </ul>
         </div>
         <div class="requirement-card recommended">
-          <h4>Recommended</h4>
+          <h4>[ RECOMMENDED ]</h4>
           <ul>
             <li>Windows 11</li>
-            <li>64-bit architecture</li>
+            <li>x64 (64-bit)</li>
             <li>4GB+ RAM</li>
-            <li>SSD storage</li>
+            <li>SSD preferred</li>
           </ul>
         </div>
       </div>
     </section>
 
     <!-- Contributors -->
-    <section class="contributors fade-in-up">
-      <h4><i class="fas fa-users"></i> Contributors</h4>
+    <section class="contributors">
+      <h4>// CONTRIBUTORS</h4>
       <div class="contributor-list">
         <div class="contributor">
           <img src="https://avatars.githubusercontent.com/u/193841515?s=64&v=4" 
-               alt="HackiTech" width="40" height="40" loading="lazy">
-          <a href="https://github.com/existingperson1321" target="_blank" rel="noopener">HackiTech</a>
+               alt="HACKITECH" width="36" height="36" loading="lazy">
+          <a href="https://github.com/existingperson1321" target="_blank" rel="noopener">existingperson1321</a>
         </div>
         <div class="contributor">
           <img src="https://avatars.githubusercontent.com/u/200307409?s=64&v=4" 
-               alt="tasqlab" width="40" height="40" loading="lazy">
+               alt="tasqlab" width="36" height="36" loading="lazy">
           <a href="https://github.com/tasqlab" target="_blank" rel="noopener">tasqlab</a>
         </div>
       </div>
@@ -857,25 +1023,25 @@
   </main>
 
   <!-- Shimeji Mascot -->
-  <img id="shimeji" src="index/hackibot.gif" alt="HackiBot Mascot" title="Click me!">
+  <img id="shimeji" src="index/hackibot.gif" alt="HACKIBOT" title="SYSTEM_COMPANION">
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Hackitech. All rights reserved.</p>
+    <p>&copy; 2025 HACKITECH // ALL RIGHTS RESERVED</p>
     <p>
-      Made with <i class="fas fa-heart" style="color: #ff6b6b;"></i> by 
-      <a href="https://github.com/existingperson1321" target="_blank" rel="noopener">HackiTech</a> & 
-      <a href="https://github.com/tasqlab" target="_blank" rel="noopener">tasqlab</a>
+      CODED BY 
+      <a href="https://github.com/existingperson1321" target="_blank" rel="noopener">HACKITECH</a> + 
+      <a href="https://github.com/tasqlab" target="_blank" rel="noopener">TASQLAB</a>
     </p>
     <div class="footer-links">
       <a href="https://github.com/existingperson1321/the-terminal" target="_blank" rel="noopener">
-        <i class="fab fa-github"></i> GitHub
+        <i class="fab fa-github"></i> GITHUB
       </a>
       <a href="https://forms.gle/3Th8xvcVuLRC4u3j7" target="_blank" rel="noopener">
-        <i class="fas fa-comment"></i> Feedback
+        <i class="fas fa-comment-alt"></i> FEEDBACK
       </a>
       <a href="#" id="report-bug">
-        <i class="fas fa-bug"></i> Report Issue
+        <i class="fas fa-bug"></i> REPORT_ISSUE
       </a>
     </div>
   </footer>
@@ -900,80 +1066,59 @@
           year: 'numeric', month: 'short', day: 'numeric'
         });
         
-        versionEl.innerHTML = `<i class="fas fa-check-circle"></i> ${version}`;
-        versionEl.style.color = 'var(--primary)';
-        dateEl.textContent = `• Updated ${date}`;
+        versionEl.classList.remove('skeleton');
+        versionEl.textContent = version;
+        versionEl.style.color = 'var(--neon-green)';
+        dateEl.textContent = ` // ${date}`;
         badgeVersion.textContent = version.replace('v', '');
       } catch (error) {
         console.warn("Using fallback version:", error);
-        versionEl.innerHTML = `<i class="fas fa-exclamation-triangle"></i> v1.6.1`;
-        dateEl.textContent = "(latest)";
+        versionEl.classList.remove('skeleton');
+        versionEl.textContent = "v1.6.1";
+        versionEl.style.color = 'var(--neon-yellow)';
+        dateEl.textContent = " // [OFFLINE]";
       }
     }
     loadVersion();
 
     // ========== SHIMEJI MASCOT ==========
     const shimeji = document.getElementById('shimeji');
-    let shimejiPos = 20;
+    let shimejiPos = 25;
     let shimejiDir = 1;
-    let shimejiSpeed = 1.5;
+    let shimejiSpeed = 1.2;
 
     function animateShimeji() {
-      const maxX = window.innerWidth - 90;
+      const maxX = window.innerWidth - 85;
       shimejiPos += shimejiDir * shimejiSpeed;
       
-      if (shimejiPos >= maxX || shimejiPos <= 20) {
+      if (shimejiPos >= maxX || shimejiPos <= 25) {
         shimejiDir *= -1;
+        // Flip sprite when changing direction
         shimeji.style.transform = `scaleX(${shimejiDir === 1 ? -1 : 1})`;
       }
       
       shimeji.style.left = shimejiPos + 'px';
       requestAnimationFrame(animateShimeji);
     }
-    animateShimeji();
+    
+    // Start animation after a brief delay
+    setTimeout(animateShimeji, 500);
 
     // Click interaction
     shimeji.addEventListener('click', () => {
-      shimeji.style.animation = 'bounce-shimeji 0.3s ease 3';
+      shimeji.style.filter = 'drop-shadow(0 0 20px var(--neon-pink))';
       setTimeout(() => {
-        shimeji.style.animation = 'bounce-shimeji 3s ease-in-out infinite';
-      }, 1000);
-    });
-
-    // ========== CAROUSEL DOTS ==========
-    const dots = document.querySelectorAll('.carousel-dot');
-    dots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        dots.forEach(d => d.classList.remove('active'));
-        dot.classList.add('active');
-        // Could add scroll-to functionality here
-      });
-    });
-
-    // ========== SCROLL ANIMATIONS ==========
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.fade-in-up').forEach(el => {
-      observer.observe(el);
+        shimeji.style.filter = 'drop-shadow(0 0 8px var(--neon-purple))';
+      }, 300);
     });
 
     // ========== IMAGE LOADING ==========
     document.querySelectorAll('.carousel img').forEach(img => {
       img.addEventListener('load', function() {
-        this.classList.add('loaded');
+        this.style.opacity = '1';
       });
+      img.style.opacity = '0.7';
+      img.style.transition = 'opacity 0.4s ease';
     });
 
     // ========== BUG REPORT ==========
@@ -985,16 +1130,36 @@
     // ========== KEYBOARD NAVIGATION ==========
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        // Close any modals if added later
         document.activeElement?.blur();
       }
     });
 
-    // ========== PERFORMANCE: Reduce motion preference ==========
+    // ========== REDUCED MOTION ==========
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      document.documentElement.style.setProperty('--transition-fast', '0.01ms');
-      document.documentElement.style.setProperty('--transition-normal', '0.01ms');
-      document.documentElement.style.setProperty('--transition-slow', '0.01ms');
+      document.querySelectorAll('*').forEach(el => {
+        el.style.animation = 'none';
+        el.style.transition = 'none';
+      });
+    }
+
+    // ========== TYPING EFFECT FOR VERSION ==========
+    function typeWriter(element, text, speed = 50) {
+      let i = 0;
+      element.textContent = '';
+      function type() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        }
+      }
+      type();
+    }
+    
+    // Apply typing effect to version after load
+    const originalVersion = document.getElementById('version').textContent;
+    if (originalVersion && !originalVersion.includes('v')) {
+      // Only if it's not already loaded
     }
   </script>
 </body>
